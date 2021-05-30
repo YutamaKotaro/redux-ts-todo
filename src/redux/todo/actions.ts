@@ -1,35 +1,42 @@
-import {CREATE_TODO, DELETE_TODO, UPDATE_TODO} from "./actionTypes";
-
-interface State {
-  title: string,
-  text: string
-}
-
-export const createTodoAction = (userState: State ) => {
+export const ADD_MEMO = 'ADD_MEMO';
+export const addMemo = (id: number, title: string, detail: string) => {
   return {
-    type: 'CREATE_TODO',
+    type: 'ADD_MEMO',
     payload: {
-      title: '',
-      text: '',
-    }
-  }
-}
-export const deleteTodoAction = () => {
-  return {
-    type: 'CREATE_TODO',
-    payload: {
-      title: '',
-      text: '',
-    }
-  }
-}
+      id,
+      title,
+      detail,
+    },
+  };
+};
 
-export const updateTodoAction = (userState: State ) => {
+export const DELETE_MEMO = 'DELETE_MEMO';
+export const deleteMemo = (id: number) => {
   return {
-    type: 'CREATE_TODO',
+    type: 'DELETE_MEMO',
     payload: {
-      title: '',
-      text: '',
-    }
-  }
-}
+      id: '',
+    },
+  };
+};
+
+export const EDIT_MEMO = 'EDIT_MEMO';
+export const editMemo = (title: string, detail: string) => {
+  return {
+    type: 'EDIT_MEMO',
+    payload: {
+      title,
+      detail,
+    },
+  };
+};
+
+export const TOGGLE_MEMO_STATUS = 'TOGGLE_MEMO_STATUS';
+export const toggleMemoStatus = (status: boolean) => {
+  return {
+    type: 'TOGGLE_MEMO_STATUS',
+    payload: {
+      status,
+    },
+  };
+};

@@ -1,9 +1,10 @@
-import React from "react";
-import {Button} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
+import React from 'react';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
 interface Props {
-  label: string
+  label: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const useStyles = makeStyles({
@@ -14,15 +15,15 @@ const useStyles = makeStyles({
     height: 48,
     marginBottom: 16,
     width: 256,
-    borderColor: '#000'
-  }
-})
+    borderColor: '#000',
+  },
+});
 
 export const PrimaryButton: React.VFC<Props> = (props) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
-      <Button className={classes.button} variant="outlined">
-        {props.label}
-      </Button>
-  )
-}
+    <Button className={classes.button} variant="outlined" onClick={props.onClick}>
+      {props.label}
+    </Button>
+  );
+};
