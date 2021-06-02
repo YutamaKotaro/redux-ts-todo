@@ -3,10 +3,10 @@ import './assets/reset.css';
 import './assets/styles.css';
 import { Todo } from './pages/Todo/Todo';
 import { Provider } from 'react-redux';
-import store from './redux/store/store';
+import index from './store';
 import { createStore } from 'redux';
 
-const Store = createStore(store);
+const Store = createStore(index);
 
 function App() {
   return (

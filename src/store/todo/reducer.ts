@@ -1,5 +1,5 @@
-import * as Actions from './actions';
-import { initialState } from '../store/initialState';
+import * as Actions from './action';
+import { createInitialState } from '../initialState';
 
 interface State {
   id: number;
@@ -8,7 +8,7 @@ interface State {
   status: 'done' | 'undone';
 }
 
-export default (state = initialState, action: { type: string; payload: State }) => {
+export default (state = createInitialState(), action: { type: string; payload: State }) => {
   switch (action.type) {
     case Actions.ADD_MEMO:
       const { title, detail } = action.payload;
@@ -16,10 +16,8 @@ export default (state = initialState, action: { type: string; payload: State }) 
         ...state,
         payload: {
           todos: [...state.todos],
-          todoItem: {
-            title,
-            detail,
-          },
+          title,
+          detail,
         },
       };
     case Actions.DELETE_MEMO:

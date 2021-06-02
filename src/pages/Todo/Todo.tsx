@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
 
 export const Todo = () => {
+  const [title, setTitle] = useState<string>('');
+  const [detail, setDetail] = useState<string>('');
   return (
     <div className={'c-section-container'}>
       <h2>TOTO LIST</h2>
@@ -13,7 +15,7 @@ export const Todo = () => {
         type={'text'}
       />
       <InputTextField
-        label={'text'}
+        label={'Detail'}
         multiline={true}
         fullWidth={true}
         required={false}
