@@ -1,4 +1,4 @@
-interface Todo {
+export interface TodoState {
   id: number;
   title: string;
   detail: string;
@@ -13,7 +13,7 @@ interface Todo {
 
 //initialStateはオブジェクトで定義しない。上書きされた時に機能しなくなる。関数にする
 export const createInitialState = () => ({
-  todos: [] as Todo[],
+  todos: [] as TodoState[],
 });
 
 //要所要所で方宣言するのは堅実で複数人で開発しても壊れにくい。どこで何を定義しているのかわかる。importするのがだるい。
