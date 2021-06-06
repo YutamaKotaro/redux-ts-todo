@@ -1,23 +1,30 @@
 import React, { useCallback, useState } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
-import { TodoState } from '../../store/initialState';
+import { useCookies } from 'react-cookie';
 
 export const Todo = () => {
-  const [todo, setTodo] = useState<TodoState>({ id: 0, title: '', detail: '', status: 'undone' });
+  const [title, setTitle] = useState<string>('');
+  const [detail, setDetail] = useState<string>('');
+  const [todo, setTodo] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   const inputTitile = useCallback(
     (event) => {
-      setTodo(event.target.value);
+      setTitle(event.target.value);
     },
-    [setTodo]
+    [setTitle]
   );
 
   const inputDetail = useCallback(
     (event) => {
-      setTodo(event.target.value);
+      setDetail(event.target.value);
     },
-    [setTodo]
+    [setDetail]
   );
+
+  const handleOnSubmit = () => {
+    setCookie('user', 'obydul', { path: '/' });
+  };
 
   return (
     <div className={'c-section-container'}>
@@ -28,7 +35,7 @@ export const Todo = () => {
         fullWidth={true}
         required={true}
         type={'text'}
-        value={todo.title}
+        value={title}
         onChange={inputTitile}
       />
       <InputTextField
@@ -37,11 +44,11 @@ export const Todo = () => {
         fullWidth={true}
         required={false}
         type={'text'}
-        value={todo.detail}
+        value={detail}
         onChange={inputDetail}
       />
       <div className={'module-spacer--medium'}></div>
-      <PrimaryButton label={'Add Todo'} />
+      <PrimaryButton label={'Add Todo'} onClick={() => handleOnSubmit()} />
       <TodoList />
     </div>
   );

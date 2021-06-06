@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 
 interface Props {
   label: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const useStyles = makeStyles({

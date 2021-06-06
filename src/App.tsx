@@ -5,14 +5,17 @@ import { Todo } from './pages/Todo/Todo';
 import { Provider } from 'react-redux';
 import index from './store';
 import { createStore } from 'redux';
+import { CookiesProvider } from 'react-cookie';
 
 const Store = createStore(index);
 
 function App() {
   return (
-    <Provider store={Store}>
-      <Todo />
-    </Provider>
+    <CookiesProvider>
+      <Provider store={Store}>
+        <Todo />
+      </Provider>
+    </CookiesProvider>
   );
 }
 
