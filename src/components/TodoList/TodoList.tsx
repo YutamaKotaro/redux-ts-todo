@@ -1,9 +1,14 @@
 import React from 'react';
 
-export const TodoList = () => {
+interface Todo {
+  todolist: string;
+}
+
+export const TodoList: React.VFC<Todo> = (props) => {
   return (
     <div>
-      <h3>↓ Todo List Item ↓</h3>
+      <h3 style={{ fontSize: '20px' }}>↓ Todo List Item ↓</h3>
+      <p>{props.todolist}</p>
     </div>
   );
 };

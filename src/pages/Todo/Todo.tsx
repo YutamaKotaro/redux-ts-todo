@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
-import { useCookies } from 'react-cookie';
+import { set } from '../../storage';
 
 export const Todo = () => {
   const [title, setTitle] = useState<string>('');
   const [detail, setDetail] = useState<string>('');
   const [todo, setTodo] = useState([]);
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   const inputTitile = useCallback(
     (event) => {
@@ -23,7 +22,7 @@ export const Todo = () => {
   );
 
   const handleOnSubmit = () => {
-    setCookie('user', 'obydul', { path: '/' });
+    set('todo', title, detail);
   };
 
   return (
@@ -49,7 +48,7 @@ export const Todo = () => {
       />
       <div className={'module-spacer--medium'}></div>
       <PrimaryButton label={'Add Todo'} onClick={() => handleOnSubmit()} />
-      <TodoList />
+      <TodoList todolist={'hello'} />
     </div>
   );
 };
