@@ -25,6 +25,8 @@ export const Todo = () => {
     set('todo', title, detail);
   };
 
+  console.log(document.cookie);
+
   return (
     <div className={'c-section-container'}>
       <h2>TOTO LIST</h2>
