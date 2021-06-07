@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Todo {
-  todolist: string;
+  todolist: any;
 }
 
 export const TodoList: React.VFC<Todo> = (props) => {

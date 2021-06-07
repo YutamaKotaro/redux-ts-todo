@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
-import { set } from '../../storage';
+import { set, get } from '../../storage';
 
 export const Todo = () => {
   const [title, setTitle] = useState<string>('');
@@ -25,7 +25,7 @@ export const Todo = () => {
     set('todo', title, detail);
   };
 
-  console.log(document.cookie);
+  get();
 
   return (
     <div className={'c-section-container'}>
