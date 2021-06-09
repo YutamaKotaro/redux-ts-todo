@@ -7,7 +7,7 @@ export const Todo = () => {
   const [detail, setDetail] = useState<string>('');
   const [todo, setTodo] = useState([]);
 
-  const inputTitile = useCallback(
+  const inputTitle = useCallback(
     (event) => {
       setTitle(event.target.value);
     },
@@ -42,7 +42,7 @@ export const Todo = () => {
         required={true}
         type={'text'}
         value={title}
-        onChange={inputTitile}
+        onChange={inputTitle}
       />
       <InputTextField
         label={'Detail'}
