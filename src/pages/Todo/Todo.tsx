@@ -30,10 +30,6 @@ export const Todo = () => {
   const titleItems = get('title');
   const detailItems = get('detail');
 
-  useEffect(() => {
-    return titleItems;
-  }, [titleItems]);
-
   return (
     <div className={'c-section-container'}>
       <h2>TOTO LIST</h2>
