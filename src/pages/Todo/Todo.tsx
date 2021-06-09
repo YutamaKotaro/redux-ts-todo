@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
 import { set, get } from '../../storage';
 
@@ -22,10 +22,15 @@ export const Todo = () => {
   );
 
   const handleOnSubmit = () => {
-    set('todo', title, detail);
+    set(title, detail);
   };
 
-  get();
+  const titleItems = get('title');
+  const detailItems = get('detail');
+
+  useEffect(() => {
+    return titleItems;
+  }, [titleItems]);
 
   return (
     <div className={'c-section-container'}>
@@ -50,7 +55,7 @@ export const Todo = () => {
       />
       <div className={'module-spacer--medium'}></div>
       <PrimaryButton label={'Add Todo'} onClick={() => handleOnSubmit()} />
-      <TodoList todolist={'hello'} />
+      <TodoList todoTitle={titleItems} todoDetail={detailItems} />
     </div>
   );
 };
