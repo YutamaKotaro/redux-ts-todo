@@ -23,6 +23,8 @@ export const Todo = () => {
 
   const handleOnSubmit = () => {
     set(title, detail);
+    setTitle('');
+    setDetail('');
   };
 
   const titleItems = get('title');
