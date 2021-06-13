@@ -1,11 +1,10 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
-import { set, get } from '../../storage';
+import { setTodo, get } from '../../storage';
 
 export const Todo = () => {
   const [title, setTitle] = useState<string>('');
   const [detail, setDetail] = useState<string>('');
-  const [todo, setTodo] = useState([]);
 
   const inputTitle = useCallback(
     (event) => {
@@ -22,7 +21,7 @@ export const Todo = () => {
   );
 
   const handleOnSubmit = () => {
-    set(title, detail);
+    setTodo(title, detail);
     setTitle('');
     setDetail('');
   };
