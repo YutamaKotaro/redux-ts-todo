@@ -1,37 +1,36 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { InputTextField, PrimaryButton, TodoList } from '../../components';
-import { setTodo, get } from '../../storage';
+import { setTodo, Cookie, setCookie } from '../../storage';
 
 export const Todo = () => {
   const [title, setTitle] = useState<string>('');
   const [detail, setDetail] = useState<string>('');
 
   const inputTitle = useCallback(
-    (event) => {
+    (event: any) => {
       setTitle(event.target.value);
     },
     [setTitle]
   );
 
   const inputDetail = useCallback(
-    (event) => {
+    (event: any) => {
       setDetail(event.target.value);
     },
     [setDetail]
   );
 
   const handleOnSubmit = () => {
-    setTodo(title, detail);
+    setCookie.title = title;
+    setCookie.detail = detail;
+
     setTitle('');
     setDetail('');
   };
 
-  const titleItems = get('title');
-  const detailItems = get('detail');
-
   return (
     <div className={'c-section-container'}>
-      <h2>TOTO LIST</h2>
+      <h2>TODO LIST</h2>
       <InputTextField
         label={'Title'}
         multiline={true}
@@ -52,7 +51,7 @@ export const Todo = () => {
       />
       <div className={'module-spacer--medium'}></div>
       <PrimaryButton label={'Add Todo'} onClick={() => handleOnSubmit()} />
-      <TodoList todoTitle={titleItems} todoDetail={detailItems} />
+      <TodoList todoTitle={Cookie.title} todoDetail={Cookie.detail} />
     </div>
   );
 };

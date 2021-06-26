@@ -7,12 +7,27 @@ function set(keyName: string, value: string) {
   document.cookie = `${keyName}=${value}`;
 }
 
-export function get(todoItem: string) {
+function get(todoItem: string) {
   let cookieData = document.cookie.split('; ').find((row) => row.startsWith(`${todoItem}=`));
-  const strCookie = JSON.stringify(cookieData).replace(`${todoItem}=`, '');
-  const parseCookie = JSON.parse(strCookie);
-  console.log(cookieData);
-  console.log(strCookie);
-  console.log(parseCookie);
-  return parseCookie;
+  if (cookieData) {
+    const strCookie = JSON.stringify(cookieData)?.replace(`${todoItem}=`, '');
+    const parseCookie = JSON.parse(strCookie);
+    return parseCookie;
+  }
+  return null;
 }
+
+const target = {};
+export const Cookie: Record<string, any> = new Proxy(target, {
+  get: (_, props: string) => {
+    return get(props);
+  },
+});
+
+export const setCookie: Record<string, any> = new Proxy(target, {
+  set: (_: any, props: string, value: string, receiver: string): any => {
+    set(props, value);
+    props = value;
+    return true;
+  },
+});
