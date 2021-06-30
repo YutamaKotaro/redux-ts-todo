@@ -1,4 +1,4 @@
-import { Cookie, setCookie } from './storage';
+import { Cookie, getArray, setCookie, asyncFnc } from './storage';
 
 /*
     specification
@@ -25,11 +25,50 @@ describe('getter', () => {
 
 describe('setter', () => {
   beforeAll(() => {
-    // document.cookie = 'title=21;';
+    document.cookie = 'title=21;';
   });
   afterAll(jest.clearAllMocks);
   test('何かを入力したとき', () => {
-    setCookie.title = '24';
-    console.log(document.cookie);
+    setCookie.title1 = '2';
+  });
+  test('何も入力してないとき', () => {
+    setCookie.title2 = null;
+  });
+  console.log(setCookie.title);
+});
+
+// Demo Test Case
+
+//1-1 数値を入力したとき
+//1-2 文字を入力したとき
+//1-3 何も入力していない時
+describe('demo', () => {
+  beforeAll(() => {
+    getArray(5);
+  });
+  afterAll(jest.clearAllMocks);
+  test('数値を入力したとき', () => {
+    getArray(7);
+    console.log(getArray(7));
+  });
+  // test('文字を入力したとき', () => {
+  //   getArray('a');
+  //   console.log(getArray('a'));
+  // });
+  // test('何も入力していない時', () => {
+  //   getArray(null);
+  //   console.log(getArray(null));
+  // });
+});
+
+// Demo Test Case2
+// 1-1 数値を入力したとき
+describe('demo2', () => {
+  beforeAll(() => {
+    asyncFnc(5000);
+  });
+  afterAll(jest.clearAllMocks);
+  test('数値を入力したとき', () => {
+    asyncFnc(1000);
   });
 });

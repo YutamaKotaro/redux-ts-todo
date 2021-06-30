@@ -31,3 +31,24 @@ export const setCookie: Record<string, any> = new Proxy(target, {
     return true;
   },
 });
+
+// Demo Test Case
+export function getArray(num: number) {
+  let results = [];
+  if (num) {
+    for (let i = 1; i < 6; i++) {
+      results.push(i * num);
+    }
+  } else {
+    return null;
+  }
+  return results;
+}
+// Demo Test Case2
+export const asyncFnc = (val: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(val);
+    }, 1000);
+  });
+};
